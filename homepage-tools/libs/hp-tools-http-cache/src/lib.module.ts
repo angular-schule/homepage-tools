@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CacheService } from 'ng2-cache';
@@ -12,7 +12,7 @@ import { HttpCacheService } from './http-cache/http-cache.service';
   ]
 })
 export class HttpCacheModule {
-  public static forRoot(): HttpCacheModule {
+  public static forRoot(): ModuleWithProviders {
     return {
       ngModule: HttpCacheModule,
       providers: [

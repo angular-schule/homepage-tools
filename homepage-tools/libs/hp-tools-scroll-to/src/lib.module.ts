@@ -8,7 +8,7 @@ import { ScrollToService } from './scroll-to/scroll-to.service';
   ]
 })
 export class ScrollToModule {
-  public static forRoot(): ScrollToModule {
+  public static forRoot(): ModuleWithProviders {
     return {
       ngModule: ScrollToModule,
       providers: [

@@ -9,7 +9,7 @@
     "start": "ng serve",
     "build": "ng build",
 
-    "build:big-fat-test": "rimraf dist && npm run build:lib && npm run build:app",
+    "build:big-fat-test": "npm run build:lib && npm run build:app",
 
     "build:app": "npm run build:cpr:http-cache && npm run build:cpr:scroll-to && ng build --app packages && rimraf src/@angular-schule",
     "build:cpr:http-cache": "cpr dist/hp-tools-http-cache src/@angular-schule/hp-tools-http-cache -o",
