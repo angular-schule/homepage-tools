@@ -1,10 +1,8 @@
-import { HttpCacheModule } from './http-cache/http-cache.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { ScrollToModule } from '@angular-schule/hp-tools-scroll-to';
 
 import { AppComponent } from './app.component';
-
 
 @NgModule({
   declarations: [
@@ -12,9 +10,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpCacheModule
+    ScrollToModule.forRoot()
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

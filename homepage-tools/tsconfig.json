@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -12,8 +13,15 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es2016",
       "dom"
-    ]
-  }
+    ],
+    "paths": {
+      "@angular-schule/hp-tools-http-cache": ["dist/hp-tools-http-cache"],
+      "@angular-schule/hp-tools-scroll-to":  ["dist/hp-tools-scroll-to"]
+     }
+  },
+  "exclude": [
+    ".ng_build"
+  ]
 }

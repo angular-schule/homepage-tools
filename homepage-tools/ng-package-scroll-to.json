@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "src": "libs/hp-tools-scroll-to",
+  "dest": "dist/hp-tools-scroll-to",
+  "workingDirectory": ".ng_build",
+  "lib": {
+    "entryFile": "src/public_api.ts"
+  }
+}

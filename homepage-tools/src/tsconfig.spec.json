@@ -2,13 +2,17 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
-    "baseUrl": "./",
     "module": "commonjs",
     "target": "es5",
+    "baseUrl": "",
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "@angular-schule/hp-tools-http-cache": ["../dist/hp-tools-http-cache"],
+      "@angular-schule/hp-tools-scroll-to":  ["../dist/hp-tools-scroll-to"]
+    }
   },
   "files": [
     "test.ts"
