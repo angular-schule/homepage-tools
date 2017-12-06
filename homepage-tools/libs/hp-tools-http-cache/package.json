@@ -7,7 +7,6 @@
   "private": true,
   "peerDependencies": {
     "@angular/core": "^4.2.4",
-    "@angular/common": "^4.2.4",
-	  "ng2-cache": "^0.1.11"
+    "@angular/common": "^4.2.4"
   }
 }
