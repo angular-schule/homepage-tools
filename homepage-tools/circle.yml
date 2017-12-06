@@ -1,0 +1,15 @@
+machine:
+  node:
+    version: 8.4
+
+dependencies:
+  override:
+    - npm i --silent
+
+compile:
+  override:
+    - npm run build:big-fat-test
+
+test:
+  override:
+    - npm test
