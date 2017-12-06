@@ -1,8 +1,9 @@
+import 'polyfills';
+import 'rxjs/add/operator/filter';
+
 import { Location, PopStateEvent } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-
-import from 'polyfills';
 
 @Injectable()
 export class ScrollToService {
@@ -12,11 +13,11 @@ export class ScrollToService {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute, private location: Location) {
+  }
 
-      if (typeof window !== 'undefined') {
-        this.scrollToTopOnRouteChange();
-        this.scrollToAnchorOnFragmentChange();
-      };
+  public start() {
+    this.scrollToTopOnRouteChange();
+    this.scrollToAnchorOnFragmentChange();
   }
 
   /**
@@ -28,7 +29,11 @@ export class ScrollToService {
    *
    * see: https://stackoverflow.com/a/44372167/2042765
    */
-  private scrollToTopOnRouteChange() {
+  public scrollToTopOnRouteChange() {
+
+    if (typeof window === 'undefined') {
+      return;
+    }
 
     this.location.subscribe((ev: PopStateEvent) => {
       this.lastPoppedUrl = ev.url;
@@ -55,7 +60,6 @@ export class ScrollToService {
       } else {
         window.scrollTo(0, 0);
       }
-
     });
   }
 
@@ -63,7 +67,11 @@ export class ScrollToService {
    * scrolls to elements by id
    * this uses URL fragments eg. /url#fragment which can be triggered via router
    */
-  private scrollToAnchorOnFragmentChange() {
+  public scrollToAnchorOnFragmentChange() {
+
+    if (typeof window === 'undefined') {
+      return;
+    }
 
     this.router.events
       .filter(event => event instanceof NavigationEnd)
