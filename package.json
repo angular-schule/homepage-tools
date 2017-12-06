@@ -8,17 +8,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-
     "build:big-fat-test": "npm run build:lib && npm run build:app",
-
     "build:app": "npm run build:cpr:http-cache && npm run build:cpr:scroll-to && ng build --app packages && rimraf src/@angular-schule",
     "build:cpr:http-cache": "cpr dist/hp-tools-http-cache src/@angular-schule/hp-tools-http-cache -o",
     "build:cpr:scroll-to": "cpr dist/hp-tools-scroll-to src/@angular-schule/hp-tools-scroll-to -o ",
-
     "build:lib": "npm run build:lib:http-cache && npm run build:lib:scroll-to",
     "build:lib:http-cache": "ng-packagr -p ng-package-http-cache.json",
     "build:lib:scroll-to": "ng-packagr -p ng-package-scroll-to.json",
-
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -37,6 +33,7 @@
     "core-js": "^2.4.1",
     "ng2-cache": "^0.1.11",
     "rxjs": "^5.5.2",
+    "smoothscroll-polyfill": "^0.4.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

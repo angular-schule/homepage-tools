@@ -5,8 +5,12 @@
   "author": "Johannes Hoppe <johannes.hoppe@haushoppe-its.de>",
   "license": "MIT",
   "private": true,
+  "dependencies": {
+    "smoothscroll-polyfill": "^0.4.0"
+  },
   "peerDependencies": {
     "@angular/core": "^4.2.4",
-    "@angular/common": "^4.2.4"
+    "@angular/common": "^4.2.4",
+    "@angular/router": "^4.2.4"
   }
 }
