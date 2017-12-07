@@ -1,9 +1,12 @@
-import { TestDriveComponent } from './scroll-to/test-drive/test-drive.component';
-import { TestDrive2Component } from './scroll-to/test-drive/test-drive2.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { TestDriveComponent } from './scroll-to/test-drive.component';
+import { TestDrive2Component } from './scroll-to/test-drive2.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'scroll-to-test-drive', component: TestDriveComponent },
   { path: 'scroll-to-test-drive2', component: TestDrive2Component },
 ];
