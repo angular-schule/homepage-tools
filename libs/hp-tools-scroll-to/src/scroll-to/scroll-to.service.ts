@@ -1,23 +1,37 @@
+import { ScrollToConfig } from './scrollToConfig';
 import 'polyfills';
 import 'rxjs/add/operator/filter';
 
 import { Location, PopStateEvent } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Injectable()
 export class ScrollToService {
 
+  private config: ScrollToConfig;
   private lastPoppedUrl: string;
-  private skipRouteChange = false;
+  private ignoreThisRouteChange = false;
 
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute, private location: Location) {
-  }
+    private activatedRoute: ActivatedRoute, private location: Location,
+    @Optional() config: ScrollToConfig) {
+      this.setConfig(config);
+    }
 
   public start() {
     this.scrollToTopOnRouteChange();
     this.scrollToAnchorOnFragmentChange();
+  }
+
+  public setConfig(config: ScrollToConfig) {
+    this.config = Object.assign(
+      {
+        scrollDelay: 400,
+        removeFragment: true
+      },
+      config
+    );
   }
 
   /**
@@ -43,11 +57,10 @@ export class ScrollToService {
     .filter(event => event instanceof NavigationEnd)
     .subscribe((event: NavigationEnd) => {
 
-      /*
-      if (this.skipRouteChange) {
-        return this.skipRouteChange = false;
+      if (this.config.removeFragment &&
+          this.ignoreThisRouteChange) {
+        return this.ignoreThisRouteChange = false;
       }
-      */
 
       // do nothing when #fragment is present (used for in-page scrolling)
       // tslint:disable-next-line:no-bitwise
@@ -76,31 +89,27 @@ export class ScrollToService {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe((event: NavigationEnd) => {
-        console.log('NavigationEnd:', event);
 
         const currentFragment = this.activatedRoute.snapshot.fragment;
         const el = currentFragment ? document.getElementById(currentFragment) : false;
         if (el) {
 
-          // wait a bit to be sure
           setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth' } as any);
+            el.scrollIntoView({
+              block: 'start',
+              behavior: 'smooth'
+            });
 
-            /*
-            // this removes the fragment after a second, because it looks cool
-            setTimeout(() => {
-              this.skipRouteChange = true;
-              const currentUrlWithoutHash = this.router.url.split('#')[0];
-              this.router.navigate([currentUrlWithoutHash], { relativeTo: this.route });
-            }, 1000);
-            */
+            if (this.config.removeFragment) {
+              setTimeout(() => {
+                this.ignoreThisRouteChange = true;
+                const currentUrlWithoutHash = this.router.url.split('#')[0];
+                this.router.navigate([currentUrlWithoutHash], { relativeTo: this.activatedRoute });
+              }, this.config.removeFragment);
+            }
 
-          }, 400);
+          }, this.config.scrollDelay);
         }
       });
-
-    this.activatedRoute.fragment.subscribe(f => {
-      console.log('test!');
-    });
   }
 }

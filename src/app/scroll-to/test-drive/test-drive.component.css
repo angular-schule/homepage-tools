@@ -1,0 +1,11 @@
+p {
+
+  margin: auto;
+  margin-bottom: 100px;
+  width: 200px;
+}
+
+a {
+  font-weight: bold;
+  color: darkred;
+}
