@@ -16,13 +16,11 @@ import { TestDrive2Component } from './scroll-to/test-drive/test-drive2.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot({
+      scrollDelay: 500
+    })
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  constructor(scrollToService: ScrollToService) {
-    scrollToService.start();
-  }
 }

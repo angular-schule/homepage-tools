@@ -1,4 +1,5 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ScrollToConfig } from './scroll-to/scrollToConfig';
+import { NgModule, ModuleWithProviders, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollToService } from './scroll-to/scroll-to.service';
 
@@ -8,12 +9,19 @@ import { ScrollToService } from './scroll-to/scroll-to.service';
   ]
 })
 export class ScrollToModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(config?: ScrollToConfig): ModuleWithProviders {
     return {
       ngModule: ScrollToModule,
       providers: [
-        ScrollToService
+        ScrollToService,
+        { provide: ScrollToConfig, useValue: config }
       ]
     };
+  }
+
+  constructor(@Optional() service: ScrollToService) {
+    if (service) {
+      service.autoStart();
+    }
   }
 }

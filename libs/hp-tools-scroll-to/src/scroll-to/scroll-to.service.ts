@@ -19,16 +19,27 @@ export class ScrollToService {
       this.setConfig(config);
     }
 
-  public start() {
-    this.scrollToTopOnRouteChange();
-    this.scrollToAnchorOnFragmentChange();
+  /**
+   * executes both
+   * scrollToTopOnRouteChange() and
+   * scrollToAnchorOnFragmentChange()
+   */
+  public autoStart() {
+    if (this.config.autoStart) {
+      this.scrollToTopOnRouteChange();
+      this.scrollToAnchorOnFragmentChange();
+    }
   }
 
+  /**
+   * config can be changed anytime to alter the defaults
+   */
   public setConfig(config: ScrollToConfig) {
     this.config = Object.assign(
       {
-        scrollDelay: 400,
-        removeFragment: true
+        scrollDelay: 0,
+        removeFragment: true,
+        autoStart: true
       },
       config
     );
