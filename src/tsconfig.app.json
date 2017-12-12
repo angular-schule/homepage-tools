@@ -10,7 +10,7 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
-    "types": [],
+    "types": ["node"],
     "paths": {
       "@angular-schule/hp-tools-http-cache": ["../libs/hp-tools-http-cache/src/public_api.ts"],
       "@angular-schule/hp-tools-scroll-to":  ["../libs/hp-tools-scroll-to/src/public_api.ts"]
