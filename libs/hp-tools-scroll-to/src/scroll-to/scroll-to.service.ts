@@ -1,5 +1,5 @@
 import { ScrollToConfig } from './scrollToConfig';
-import 'polyfills';
+import './polyfills';
 import 'rxjs/add/operator/filter';
 
 import { Location, PopStateEvent } from '@angular/common';

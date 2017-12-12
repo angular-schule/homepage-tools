@@ -4,7 +4,6 @@
   "repository": "https://github.com/angular-schule/homepage-tools.git",
   "author": "Johannes Hoppe <johannes.hoppe@haushoppe-its.de>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "smoothscroll-polyfill": "^0.4.0"
   },
