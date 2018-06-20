@@ -4,7 +4,7 @@ import 'rxjs/add/operator/filter';
 
 import { Location, PopStateEvent } from '@angular/common';
 import { Injectable, Optional } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, NavigationStart } from '@angular/router';
 
 @Injectable()
 export class ScrollToService {
@@ -98,8 +98,10 @@ export class ScrollToService {
     }
 
     this.router.events
-      .filter(event => event instanceof NavigationEnd)
-      .subscribe((event: NavigationEnd) => {
+      .filter(event => event instanceof NavigationStart || event instanceof NavigationEnd)
+      .subscribe((event: NavigationStart | NavigationEnd) => {
+
+
 
         setTimeout(() => {
           const currentFragment = this.activatedRoute.snapshot.fragment;
@@ -122,7 +124,7 @@ export class ScrollToService {
 
             }, this.config.scrollDelay);
           }
-        }, 0) // this will also scroll on hard reload
+        }, 1000) // this will also scroll on hard reload
       });
   }
 }
