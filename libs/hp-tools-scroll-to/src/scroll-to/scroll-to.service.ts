@@ -98,33 +98,35 @@ export class ScrollToService {
     }
 
     this.router.events
-      .filter(event => event instanceof NavigationStart || event instanceof NavigationEnd)
-      .subscribe((event: NavigationStart | NavigationEnd) => {
+      .filter(event => event instanceof NavigationStart)
+      .subscribe((event: NavigationStart) => {
 
+        this.scrollToAnchor()
+      });
+  }
 
+  public scrollToAnchor() {
+    setTimeout(() => {
+      const currentFragment = this.activatedRoute.snapshot.fragment;
+      const el = currentFragment ? document.getElementById(currentFragment) : false;
+      if (el) {
 
         setTimeout(() => {
-          const currentFragment = this.activatedRoute.snapshot.fragment;
-          const el = currentFragment ? document.getElementById(currentFragment) : false;
-          if (el) {
+          el.scrollIntoView({
+            block: 'start',
+            behavior: 'smooth'
+          });
 
+          if (this.config.removeFragment) {
             setTimeout(() => {
-              el.scrollIntoView({
-                block: 'start',
-                behavior: 'smooth'
-              });
-
-              if (this.config.removeFragment) {
-                setTimeout(() => {
-                  this.ignoreThisRouteChange = true;
-                  const currentUrlWithoutHash = this.router.url.split('#')[0];
-                  this.router.navigate([currentUrlWithoutHash], { relativeTo: this.activatedRoute });
-                }, this.config.removeFragment);
-              }
-
-            }, this.config.scrollDelay);
+              this.ignoreThisRouteChange = true;
+              const currentUrlWithoutHash = this.router.url.split('#')[0];
+              this.router.navigate([currentUrlWithoutHash], { relativeTo: this.activatedRoute });
+            }, this.config.removeFragment);
           }
-        }, 1000) // this will also scroll on hard reload
-      });
+
+        }, this.config.scrollDelay);
+      }
+    }, 500)
   }
 }
