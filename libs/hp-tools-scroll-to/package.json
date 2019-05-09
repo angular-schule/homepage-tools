@@ -1,11 +1,11 @@
 {
   "name": "@angular-schule/hp-tools-scroll-to",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.8",
   "repository": "https://github.com/angular-schule/homepage-tools.git",
   "author": "Johannes Hoppe <johannes.hoppe@haushoppe-its.de>",
   "license": "MIT",
   "dependencies": {
-    "smoothscroll-polyfill": "github:angular-schule/smoothscroll#eaa7009a7581216825f30c1a2a69cfe24f965fe5"
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "peerDependencies": {
     "@angular/core": "^4.2.4",

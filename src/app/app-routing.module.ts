@@ -7,8 +7,8 @@ import { TestDrive2Component } from './scroll-to/test-drive2.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'xx/scroll-to-test-drive', component: TestDriveComponent },
   { path: 'xx/scroll-to-test-drive2', component: TestDrive2Component },
+  { path: 'xx/scroll-to-test-drive', component: TestDriveComponent }
 ];
 
 @NgModule({
