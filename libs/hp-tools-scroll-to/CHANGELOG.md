@@ -1,4 +1,4 @@
-# 0.0.1-alpha.8 (2019-05-09)
+# 0.0.1-alpha.9 (2019-05-09)
 * uses original `smoothscroll-polyfil` again,
   see https://github.com/iamdustan/smoothscroll/pull/97#issuecomment-368303423
 

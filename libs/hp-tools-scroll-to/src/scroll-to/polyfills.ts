@@ -2,9 +2,9 @@ import './polyfills-requestAnimationFrame';
 
 // https://www.npmjs.com/package/smoothscroll-polyfill
 // polyfills the scroll behavior specification
-import { polyfill } from 'smoothscroll-polyfill';
+import * as smoothscroll from 'smoothscroll-polyfill';
 
 if (typeof window !== 'undefined') {
-  polyfill.polyfill();
+  smoothscroll.polyfill();
 }
 
