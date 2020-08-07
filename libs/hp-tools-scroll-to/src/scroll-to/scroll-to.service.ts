@@ -1,6 +1,5 @@
 import { ScrollToConfig } from './scrollToConfig';
 import './polyfills';
-import 'rxjs/add/operator/filter';
 
 import { Location, PopStateEvent } from '@angular/common';
 import { Injectable, Optional } from '@angular/core';
@@ -64,9 +63,9 @@ export class ScrollToService {
       this.lastPoppedUrl = ev.url;
     });
 
-    this.router.events
-    .filter(event => event instanceof NavigationEnd)
-    .subscribe((event: NavigationEnd) => {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
 
       if (this.config.removeFragment &&
           this.ignoreThisRouteChange) {
