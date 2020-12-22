@@ -1,10 +1,9 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-
 import { HttpResponse } from '@angular/common/http';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
 
 import { HttpCacheService } from './http-cache.service';
 
@@ -24,16 +23,16 @@ export class CachingInterceptor implements HttpInterceptor {
     const cachedResponse = this.httpCache.get(req);
     if (cachedResponse) {
       // A cached response exists. Serve it instead of forwarding the request to the next handler.
-      return Observable.of(cachedResponse);
+      return of(cachedResponse);
     }
 
     // No cached response exists. Go to the network, and cache the response when it arrives.
-    return next.handle(req).do(event => {
+    return next.handle(req).pipe(tap(event => {
       // Remember, there may be other events besides just the response.
       if (event instanceof HttpResponse) {
         // Update the cache.
         this.httpCache.put(req, event);
       }
-    });
+    }));
   }
 }
